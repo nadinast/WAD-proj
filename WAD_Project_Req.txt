@@ -1,0 +1,46 @@
+﻿WAD Project
+
+A. Requirements:
+
+   1. Login
+	As a user I want to be able to login
+   2. Register
+	As a visitor, I want to be able to create an account.
+   3. Create new config file
+	As a user I want to be able to create a new configuration file from scratch.
+   4. Import config file
+	As a user I want to be able to import a local configuration file and view it.
+   5. Edit config file
+	As a user I want to be able to edit an existing configuration file.
+   6. Rearrange entities
+	As a user I want to be able to be able to rearrange the structure of the configuration file using drag&drop.
+   7. Add, edit, Delete entities
+	As a user I want to be able to add, delete and inline edit entities (categories, technologies, fingerprints, etc.)
+   8. Export config file
+	As a user I want to be able to export a configuration file to xml or json.
+   9. Save your config files (private & public)
+	As a user I want to be able to save my own files, private or public.
+   10. View your config files
+	As a user I want to be able to view my config files. (Maybe search through them)
+   11. Home Page
+	As a visitor I want to be able to view a description page and find the most interesting things about this web app.
+   12. Search in all public config files
+	As a user I want to be able to search through all the public records by username, language, technology. (maybe category, fingerprint)
+
+
+
+B. Specifications:
+
+   1. Frontend framework: Angular 4
+      1. PrimeNg
+      2. Npm
+      3. Yarn
+      4. AngularCLI
+   2. Backend framework: Spring
+      1. Spring security (for login)
+      2. Spring web (for REST Api)
+      3. Spring boot
+   3. Database: Mysql / Firebase (for start) 
+   4. IDEs:
+      1. IntelliJ IDEA
+      2. WebStorm
