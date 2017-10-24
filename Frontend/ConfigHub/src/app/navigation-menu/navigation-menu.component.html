@@ -1,5 +1,14 @@
 <p-menu #menu popup="popup" [model]="popupItems"></p-menu>
 <p-menubar [model]="items">
-  <input class="searchBar" type="text" pInputText placeholder="Search">
-  <button class="profileButton" type="button" pButton  label="Profile" icon="fa-user" (click)="menu.toggle($event)"></button>
+  <input pInputText
+         class="searchBar"
+         type="text"
+         placeholder="Search">
+
+  <button pButton
+          class="profileButton "
+          type="button"
+          label="Profile"
+          icon="fa-user"
+          (click)="menu.toggle($event)"></button>
 </p-menubar>

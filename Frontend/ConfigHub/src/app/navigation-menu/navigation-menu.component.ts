@@ -16,7 +16,6 @@ export class NavigationMenuComponent implements OnInit {
     this.items = [
       {label: 'Home', icon: 'fa-home'},
       {label: 'View Config Files', icon: 'fa-archive' },
-      {label: 'Edit Config File', icon: 'fa-edit'},
       {label: 'New Config File', icon: 'fa-file-code-o'}
     ];
     this.popupItems = [

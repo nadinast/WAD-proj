@@ -1,0 +1,33 @@
+#background{
+  background-color: rgba(186,219,255,0.02);
+}
+
+.config-file-info{
+  box-shadow: 7px 7px 5px whitesmoke;
+  background-color: ghostwhite;
+  border: 1px solid gainsboro;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  padding: 3% 3% 3% 10%;
+}
+
+.hover_shadow:hover{
+  box-shadow: 7px 7px 5px lightgrey;
+}
+
+.file_name{
+  color: black;
+  font-size: 1.5em;
+}
+
+.view_file{
+  text-align: center;
+  font-size: 1.0em;
+}
+
+.file_properties{
+  padding-left: 23%;
+  color: dimgray;
+}

@@ -1,0 +1,29 @@
+.text-area{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 0.2%;
+  height: 100vh;
+}
+
+#window{
+  background-color: darkcyan;
+}
+
+#text-area-container{
+    background-color: darkcyan;
+}
+
+.spacing{
+  margin-left: 1%;
+}
+
+.align-group-left{
+  margin-left: 9.27%;
+}
+
+.align-button-right{
+  margin-right: 10.2%;
+}
+
+
