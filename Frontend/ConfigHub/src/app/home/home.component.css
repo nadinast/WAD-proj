@@ -1,5 +1,43 @@
-.register{
-  width: 30%;
-  height: 40%;
+
+#title{
+  width: 202vh;
+  margin-left: 15vh;
+  padding-left: 15vh;
+  padding-right: 20vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  background-color: black;
+  box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 gray;
+  color: white;
+}
+
+#greeting{
+  text-align: center;
+  animation-name: neon-lighting;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+
+}
+
+#description{
   text-align: center;
 }
+
+@keyframes neon-lighting {
+  0%   {text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+                     0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+                     0 0 40px #A5F1FF;}
+  25%  {text-shadow: none}
+  40% {text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+                     0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+                     0 0 40px #A5F1FF; }
+  65% {text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+  0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+  0 0 40px #A5F1FF; }
+  75% {text-shadow: none}
+  80% {text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+  0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+  0 0 40px #A5F1FF; }
+}
+
+

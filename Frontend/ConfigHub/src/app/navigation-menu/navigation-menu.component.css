@@ -1,7 +1,9 @@
 .profileButton{
-  background: darkcyan;
+  background: yellowgreen;
+  color: black;
 }
 
 .searchBar{
-  border-color: darkcyan;
+  border-color: yellowgreen;
 }
+
