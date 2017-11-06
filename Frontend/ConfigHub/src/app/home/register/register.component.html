@@ -2,37 +2,69 @@
   <i class="fa fa-thumbs-o-up "></i>
   Sign Up!</h1>
 <hr>
-<div class="register-box col-lg-4 col-lg-offset-2">
+<div class="row">
+<form class="register-box col-lg-4 col-lg-offset-2" (ngSubmit)="onSubmit(formInfo)" #formInfo="ngForm">
   <div class="row">
         <div class="col-lg-offset-2 col-lg-4">
-          <input pInputText class="form-control input-box" type="text" placeholder="First Name"/>
+          <input pInputText class="form-control input-box"
+                 type="text" placeholder="First Name"
+                 ngModel name="firstName" required/>
         </div>
         <div class="col-lg-4">
-          <input pInputText class="form-control input-box" type="text" placeholder="Last Name"/>
+          <input pInputText class="form-control input-box"
+                 type="text" placeholder="Last Name"
+                 ngModel name="lastName" required/>
         </div>
   </div>
   <div class="row">
         <div class="col-lg-4 col-lg-offset-2">
-          <input pInputText class="form-control input-box" type="text" placeholder="Username">
+          <input pInputText class="form-control input-box"
+                 type="text" placeholder="Username"
+                 ngModel name="username" required>
         </div>
   </div>
   <div class="row">
         <div class="col-lg-4 col-lg-offset-2">
-          <input pInputText class="form-control input-box" type="email" placeholder="Email">
+          <input pInputText class="form-control input-box"
+                 type="email" placeholder="Email"
+                 ngModel name="email" required email>
         </div>
   </div>
   <div class="row">
         <div class="col-lg-4 col-lg-offset-2">
-          <input pPassword class="form-control input-box" type="password" placeholder="Password">
+          <input pPassword class="form-control input-box"
+                 type="password" placeholder="Password"
+                 ngModel name="password" required>
         </div>
         <div class="col-lg-4 text-left">
-          <input pInputText type="password" class="form-control input-box" placeholder="Confirm Password">
+          <input pInputText class="form-control input-box"
+                 type="password" placeholder="Confirm Password"
+                 ngModel name="confirmPassword" required>
         </div>
   </div>
   <div class="row">
         <div class="col-lg-4 col-lg-offset-4">
           <hr>
-          <button pButton type="submit" class="ui-button-success register-box" label="Register"></button>
+          <button pButton [disabled]="!formInfo.valid"
+                  type="submit" class="ui-button-success register-box" label="Register"></button>
         </div>
   </div>
+</form>
 </div>
+<hr>
+<div class="row">
+  <button  class="ui-button-success" style="width: 10%; margin-left: 45%" (click)="onGet()" >
+    Get users
+  </button>
+</div>
+<br>
+<!--
+<div class="row" style="width: 10%; margin-left: 45%">
+  <p>First Name: {{newUser.firstName}}</p>
+  <p>Last Name: {{newUser.lastName}}</p>
+  <p>Username: {{newUser.username}}</p>
+  <p>Email: {{newUser.email}}</p>
+  <p>Password: {{newUser.password}}</p>
+  <p>Confirm password: {{newUser.confirmPassword}}</p>
+</div>
+-->

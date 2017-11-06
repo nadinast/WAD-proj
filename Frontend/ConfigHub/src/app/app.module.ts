@@ -19,6 +19,9 @@ import { ConfigFileListComponent } from './config-file-view/config-file-list/con
 import { ConfigFileViewComponent } from './config-file-view/config-file-view.component';
 import { NewConfigFileComponent } from './new-config-file/new-config-file.component';
 import { LoginComponent } from './login/login.component';
+import {FormsModule} from "@angular/forms";
+import {UserService} from "./user.service";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -42,9 +45,11 @@ import { LoginComponent } from './login/login.component';
     InputTextareaModule,
     ToolbarModule,
     InputTextModule,
-    PasswordModule
+    PasswordModule,
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
