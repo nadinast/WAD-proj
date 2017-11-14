@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     confirmPassword:''
   };
 
-  users : string[] = [];
+  users : any[] = [];
 
   constructor(private userService: UserRegisterService) { }
 
@@ -40,7 +40,11 @@ export class RegisterComponent implements OnInit {
 
   onGet(){
     this.userService.getUsers().subscribe(
-      (users: string[]) => this.users = users,
-      (error) => console.log(error));
+      (users: any[]) => {
+        this.users = users;
+        console.log(users);
+        },
+          (error) => console.log(error)
+      );
   }
 }

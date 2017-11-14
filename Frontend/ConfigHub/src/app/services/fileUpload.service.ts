@@ -9,12 +9,12 @@ export class FileUploadService{
   }
 
   //ConfigFile model to be created
-  storeFile(file : ConfigFile){
+  /*storeFile(file : ConfigFile){
     return this.http.post("/api/file", file);
   }
 
   getFiles(){
     return this.http.get("api/files").map(
       (response: Response) => { return response.json() as ConfigFile[]; });
-  }
+  }*/
 }
