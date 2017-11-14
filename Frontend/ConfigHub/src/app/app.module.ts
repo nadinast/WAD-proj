@@ -20,7 +20,7 @@ import { ConfigFileViewComponent } from './config-file-view/config-file-view.com
 import { NewConfigFileComponent } from './new-config-file/new-config-file.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
-import {UserService} from "./user.service";
+import {UserRegisterService} from "./services/userRegister.service";
 import {HttpModule} from "@angular/http";
 
 @NgModule({
@@ -49,7 +49,7 @@ import {HttpModule} from "@angular/http";
     FormsModule,
     HttpModule
   ],
-  providers: [UserService],
+  providers: [UserRegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {UserService} from "../../user.service";
+import {UserRegisterService} from "../../services/userRegister.service";
 
 
 @Component({
@@ -18,7 +18,9 @@ export class RegisterComponent implements OnInit {
     confirmPassword:''
   };
 
-  constructor(private userService: UserService) { }
+  users : string[] = [];
+
+  constructor(private userService: UserRegisterService) { }
 
   ngOnInit() {
   }
@@ -38,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
   onGet(){
     this.userService.getUsers().subscribe(
-      (users: any[]) => console.log(users),
+      (users: string[]) => this.users = users,
       (error) => console.log(error));
   }
 }
