@@ -38,7 +38,7 @@ import { EmailDomainVisitorComponent } from './usage-stats/email-domain-visitor/
     NewConfigFileComponent,
     LoginComponent,
     UsageVisitorComponent,
-    EmailDomainVisitorComponent
+    EmailDomainVisitorComponent,
   ],
   imports: [
     BrowserModule,

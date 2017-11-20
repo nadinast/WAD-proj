@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserRegisterService} from "../../services/http/userRegister.service";
+import {Router} from "@angular/router";
+import {LoginComponent} from "../../login/login.component";
 
 
 @Component({
@@ -8,6 +10,7 @@ import {UserRegisterService} from "../../services/http/userRegister.service";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   newUser = {
     firstName: '',
@@ -18,11 +21,14 @@ export class RegisterComponent implements OnInit {
     confirmPassword:''
   };
 
-  user : string = "";
-  error : boolean = false;
-  errorMessage : string = "";
+  private user : string = "";
+  private error : boolean = false;
+  private errorMessage : string = "";
+  private successMessage : string = "";
+  private registered : boolean = false;
 
-  constructor(private userService: UserRegisterService) { }
+  constructor(private userService: UserRegisterService,
+              private router : Router) { }
 
   ngOnInit() {
   }
@@ -36,7 +42,17 @@ export class RegisterComponent implements OnInit {
     this.newUser.email = registerForm.value.email;
 
     this.userService.storeUser(this.newUser).subscribe(
-        (response) => {console.log(response)},
+        (response) => {
+          console.log(response);
+          if(response.ok) {
+            registerForm.reset();
+            this.registered = true;
+            this.successMessage = "Welcome to Config Hub " + this.newUser.username + "!";
+            console.log(this.newUser.username);
+          }
+          else
+            this.registered = false;
+        },
         (error) => {
               console.log(error);
               let errorDetails = JSON.parse(error._body);
