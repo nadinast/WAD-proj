@@ -7,8 +7,8 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./home/register/register.component";
 
 const routes: Routes = [
-  {path: 'new-file', component: NewConfigFileComponent},
   {path: '', component: HomeComponent},
+  {path: 'new-file', component: NewConfigFileComponent},
   {path: 'view-files', component: ConfigFileViewComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}

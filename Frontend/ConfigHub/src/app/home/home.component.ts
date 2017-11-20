@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserCalcService} from "../usage-stats/calculation/user-calc.service";
 
 @Component({
   selector: 'ch-home',
@@ -10,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

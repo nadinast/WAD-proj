@@ -8,11 +8,11 @@ export class UserRegisterService{
   }
 
   storeUser(user: any){
-    return this.http.post('/api/users/user', user);
+    return this.http.post('/api/register/user', user);
   }
 
-  getUsers(){
-    return this.http.get('/api/users/allUsers').map(
-      (response: Response) => { return response.json() as string[]; });
+  getUserByUsername(username : string){
+    return this.http.get('/api/register/' + username).map(
+      (response: Response) => { return response.json() });
   }
 }

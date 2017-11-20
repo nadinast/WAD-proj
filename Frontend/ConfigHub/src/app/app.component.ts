@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserRegisterService} from "./services/userRegister.service";
+import {UserRegisterService} from "./services/http/userRegister.service";
+import {UserCalcService} from "./usage-stats/calculation/user-calc.service";
 
 @Component({
   selector: 'ch-root',

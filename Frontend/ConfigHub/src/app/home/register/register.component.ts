@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {UserRegisterService} from "../../services/userRegister.service";
+import {UserRegisterService} from "../../services/http/userRegister.service";
 
 
 @Component({
@@ -18,7 +18,9 @@ export class RegisterComponent implements OnInit {
     confirmPassword:''
   };
 
-  users : any[] = [];
+  user : string = "";
+  error : boolean = false;
+  errorMessage : string = "";
 
   constructor(private userService: UserRegisterService) { }
 
@@ -34,17 +36,28 @@ export class RegisterComponent implements OnInit {
     this.newUser.email = registerForm.value.email;
 
     this.userService.storeUser(this.newUser).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error));
+        (response) => {console.log(response)},
+        (error) => {
+              console.log(error);
+              let errorDetails = JSON.parse(error._body);
+              if(error.status == 400) {
+                console.log(error.status);
+                this.error = true;
+                this.errorMessage = errorDetails.message;
+              }
+              else
+              this.error = false;
+        });
   }
 
-  onGet(){
-    this.userService.getUsers().subscribe(
-      (users: any[]) => {
-        this.users = users;
-        console.log(users);
+  onGet(username : string){
+    this.userService.getUserByUsername(username).subscribe(
+      (users: any) => {
+        this.user = users.username;
+        console.log(this.user);
         },
-          (error) => console.log(error)
+      (error) => console.log(error)
       );
   }
+
 }

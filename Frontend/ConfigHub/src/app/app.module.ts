@@ -20,8 +20,12 @@ import { ConfigFileViewComponent } from './config-file-view/config-file-view.com
 import { NewConfigFileComponent } from './new-config-file/new-config-file.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
-import {UserRegisterService} from "./services/userRegister.service";
+import {UserRegisterService} from "./services/http/userRegister.service";
 import {HttpModule} from "@angular/http";
+import {UserCalcService} from "./usage-stats/calculation/user-calc.service";
+import {StatisticsService} from "./services/http/statistics.service";
+import { UsageVisitorComponent } from './usage-stats/usage-visitor/usage-visitor.component';
+import { EmailDomainVisitorComponent } from './usage-stats/email-domain-visitor/email-domain-visitor.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import {HttpModule} from "@angular/http";
     ConfigFileListComponent,
     ConfigFileViewComponent,
     NewConfigFileComponent,
-    LoginComponent
+    LoginComponent,
+    UsageVisitorComponent,
+    EmailDomainVisitorComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,7 @@ import {HttpModule} from "@angular/http";
     FormsModule,
     HttpModule
   ],
-  providers: [UserRegisterService],
+  providers: [UserRegisterService, StatisticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

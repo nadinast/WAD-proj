@@ -44,22 +44,25 @@
   </div>
   <div class="row">
         <div class="col-lg-4 col-lg-offset-4">
+          <br>
+          <p *ngIf="error" style="text-align: center; color:red"> {{errorMessage}} </p>
           <hr>
           <button pButton [disabled]="!formInfo.valid"
                   type="submit" class="ui-button-success register-box" label="Register"></button>
         </div>
   </div>
 </form>
+
 </div>
 <hr>
 <div class="row">
-  <button  class="ui-button-success" style="width: 10%; margin-left: 45%" (click)="onGet()" >
-    Get users
+  <button  class="ui-button-success" style="width: 10%; margin-left: 45%" (click)="onGet('nadina')" >
+    Get user
   </button>
 </div>
 <br>
-<div class="row" style="width: 10%; margin-left: 45%" *ngFor="let user of users">
-  <p>{{user.username}}</p>
+<div class="row" style="width: 10%; margin-left: 45%">
+  <p>{{user}}</p>
   <br>
 </div>
 <!--
