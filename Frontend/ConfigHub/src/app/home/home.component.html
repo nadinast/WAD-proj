@@ -1,4 +1,4 @@
-<div>
+<div style="font-family: Noto Sans, sans-serif">
   <h1 id="title">
     Config Hub
     <i class="fa fa-eye pull-right fa"></i>
@@ -9,9 +9,17 @@
     <i class="fa fa-hand-spock-o"></i>
     Welcome to ConfigHub!</h3>
   <h4 id="description">Store, edit and view your configuration files for the Insider app.</h4>
-  <hr>
 </div>
-<div class = "container-fluid">
+<div class="row">
+  <ch-login></ch-login>
+</div>
+<hr>
+<div class = "container" >
+  <div class=" stats">
+    <i class="fa fa-arrow-circle-down fa-2x"></i>
+  </div>
+  <h4 class="stats">Some cool stats about this site:</h4>
+  <br>
   <div class="row">
     <div class="col-lg-offset-2 col-lg-8" >
       <ch-usage-visitor></ch-usage-visitor>
@@ -19,4 +27,5 @@
     </div>
   </div>
 </div>
-<ch-login></ch-login>
+<hr>
+

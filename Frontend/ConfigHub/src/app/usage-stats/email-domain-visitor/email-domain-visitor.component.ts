@@ -7,15 +7,16 @@ import {StatisticsService} from "../../services/http/statistics.service";
 @Component({
   selector: 'ch-email-domain-visitor',
   templateUrl: './email-domain-visitor.component.html',
-  styleUrls: ['./email-domain-visitor.component.css']
+  styleUrls: ['../usage.style.css']
 })
+
 export class EmailDomainVisitorComponent implements Visitor, OnInit {
 
   private readonly ERROR_MSG  : string = "Email domain usage not available!";
+  private readonly SUCCESS_MSG : string = "Current users using gmail: ";
 
   private emailDomainUserUsage : string = this.ERROR_MSG;
   private emailDomainFileUsage: string = this.ERROR_MSG;
-  private userCalcService =  new UserCalcService();
 
   constructor(private statsService : StatisticsService) { }
 
@@ -24,18 +25,20 @@ export class EmailDomainVisitorComponent implements Visitor, OnInit {
   }
 
   getCount() : void{
-    this.userCalcService.accept(this);
+    let userCalcService =  new UserCalcService();
+    userCalcService.accept(this);
   }
 
-  calculateFileStats(file: FileCalcService): string {
+  calculateFileStats(fileCalcService: FileCalcService): string {
     console.log("Hello files uploaded from an email domain!");
     return this.emailDomainFileUsage;
   }
 
-  calculateUserStats(user: UserCalcService): string {
+  calculateUserStats(userCalcService: UserCalcService): string {
     this.statsService.getEmailDomainStats("gmail").subscribe(
       (response) => {
-        this.emailDomainUserUsage = response["_body"];
+        userCalcService.updateCrntUsers(response["_body"]);
+        this.emailDomainUserUsage = this.SUCCESS_MSG + userCalcService.getCrntUsers();
         console.log(this.emailDomainUserUsage);
       },
     (error) => {

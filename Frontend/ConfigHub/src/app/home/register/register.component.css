@@ -47,5 +47,5 @@
   color: red;
   animation-name: fadein;
   animation-duration: 2s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: backwards;
 }

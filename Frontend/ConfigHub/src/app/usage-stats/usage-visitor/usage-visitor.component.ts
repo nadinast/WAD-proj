@@ -7,15 +7,15 @@ import {StatisticsService} from "../../services/http/statistics.service";
 @Component({
   selector: 'ch-usage-visitor',
   templateUrl: './usage-visitor.component.html',
-  styleUrls: ['./usage-visitor.component.css']
+  styleUrls: ['../usage.style.css']
 })
 export class UsageVisitorComponent implements Visitor, OnInit{
 
   private readonly ERROR_MSG  : string = "Current usage not available!";
+  private readonly SUCCESS_MSG : string = "Current registered users: ";
 
   private userUsage:string = this.ERROR_MSG;
   private fileUsage:string = this.ERROR_MSG;
-  private userCalcService =  new UserCalcService();
 
   ngOnInit(): void {
     this.getCount();
@@ -26,18 +26,20 @@ export class UsageVisitorComponent implements Visitor, OnInit{
   }
 
   getCount() : void{
-    this.userCalcService.accept(this);
+    let userCalcService =  new UserCalcService();
+    userCalcService.accept(this);
   }
 
-  calculateFileStats(file: FileCalcService): string {
+  calculateFileStats(fileCalcService: FileCalcService): string {
     console.log("Hello file usage!");
     return this.fileUsage;
   }
 
-  calculateUserStats(user: UserCalcService): string {
+  calculateUserStats(userCalcService: UserCalcService): string {
     let subscription = this.statsService.getUserStats().subscribe(
       (response) => {
-        this.userUsage = response["_body"];
+        userCalcService.updateCrntUsers(response["_body"]);
+        this.userUsage = this.SUCCESS_MSG + userCalcService.getCrntUsers();
         console.log(this.userUsage);
       },
       (error) => {

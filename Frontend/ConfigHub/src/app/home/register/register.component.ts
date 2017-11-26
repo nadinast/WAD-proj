@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserRegisterService} from "../../services/http/userRegister.service";
 import {Router} from "@angular/router";
@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit {
   private registered : boolean = false;
 
   constructor(private userService: UserRegisterService,
-              private router : Router) { }
+              private router : Router,
+              private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -41,14 +42,18 @@ export class RegisterComponent implements OnInit {
     this.newUser.lastName = registerForm.value.lastName;
     this.newUser.email = registerForm.value.email;
 
+    this.error = false;
+
     this.userService.storeUser(this.newUser).subscribe(
         (response) => {
           console.log(response);
           if(response.ok) {
-            registerForm.reset();
             this.registered = true;
+            registerForm.reset();
             this.successMessage = "Welcome to Config Hub " + this.newUser.username + "!";
             console.log(this.newUser.username);
+            console.log(this.registered);
+            this.cdRef.detectChanges();
           }
           else
             this.registered = false;
@@ -62,7 +67,7 @@ export class RegisterComponent implements OnInit {
                 this.errorMessage = errorDetails.message;
               }
               else
-              this.error = false;
+                this.error = false;
         });
   }
 
