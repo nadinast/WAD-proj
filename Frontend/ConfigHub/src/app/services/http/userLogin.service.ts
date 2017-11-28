@@ -1,22 +1,31 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Response} from "@angular/http";
+import {Http} from "@angular/http"
 import 'rxjs/Rx'
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class UserLoginService{
-  private loginUrl = 'http://localhost:8080/api/login';
-  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http){
   }
 
-  setCurrentUser(user: any) : Observable<Response>{
-    return this.http.post(this.loginUrl, user, this.headers);
+  login(user: any) : Observable<Response>{
+    return this.http.post('/api/login', user);
   }
 
-  getCurrentUser() : Observable<string[]>{
-    return this.http.get('/api/users/currentUser').map(
+ /* getCurrentUser() : Observable<string[]>{
+    return this.http.get('/api/login/get' ).map(
       (response: Response) => { return response.json() as string[]; });
+  }*/
+
+  logout() : Observable<Response>{
+    return this.http.get('/api/logout');
+  }
+
+  isLoggedIn() : boolean{
+    if(sessionStorage.getItem('currentUser'))
+      return true;
+    return false;
   }
 }

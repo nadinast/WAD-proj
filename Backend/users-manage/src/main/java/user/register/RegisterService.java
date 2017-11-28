@@ -1,15 +1,19 @@
 package user.register;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import user.login.UserDetailsImpl;
 import user.register.errors.EmailUsedException;
 import user.register.errors.PasswordsDontMatchException;
 import user.register.errors.UsernameTakenException;
 
 @Service
-public class RegisterService {
+public class RegisterService{
 	
 	private static final String PASSWORD_ERROR = "Passwords do not match!";
 	private static final String USERNAME_ERROR = "Username already exists!";
@@ -60,4 +64,5 @@ public class RegisterService {
 			return true;
 		return false;
 	}
+	
 }

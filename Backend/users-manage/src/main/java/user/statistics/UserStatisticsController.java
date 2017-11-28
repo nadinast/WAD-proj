@@ -14,13 +14,12 @@ public class UserStatisticsController {
 	private StatisticsService statService;
 	
 	@GetMapping("/general/users")
-	public String getNumOfUsers() {
-		return "Current number of users: " + statService.getNumOfUsers();
+	public long getNumOfUsers() {
+		return statService.getNumOfUsers();
 	}
 	
 	@GetMapping("/email/{user_email}")
-	public String getNumOfUsersThatUse(@PathVariable("user_email") String userEmail) {
-		System.out.println(userEmail);
-		return "Current users using " + userEmail + ": " + statService.getNumOfUsersThatUse(userEmail); 
+	public long getNumOfUsersThatUse(@PathVariable("user_email") String userEmail) {
+		return statService.getNumOfUsersThatUse(userEmail); 
 	}
 }

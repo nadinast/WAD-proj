@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
   private registered : boolean = false;
 
   constructor(private userService: UserRegisterService,
-              private router : Router,
               private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {

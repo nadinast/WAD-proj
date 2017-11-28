@@ -3,6 +3,7 @@ import {Visitor} from "../calculation/visitor";
 import {FileCalcService} from "../calculation/file-calc.service";
 import {UserCalcService} from "../calculation/user-calc.service";
 import {StatisticsService} from "../../services/http/statistics.service";
+import {UserLoginService} from "../../services/http/userLogin.service";
 
 @Component({
   selector: 'ch-email-domain-visitor',

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {UserRegisterService} from "../services/http/userRegister.service";
+import {UserLoginService} from "../services/http/userLogin.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ch-login',
@@ -13,7 +16,8 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor() { }
+  constructor(private loginService : UserLoginService,
+              private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -22,7 +26,17 @@ export class LoginComponent implements OnInit {
     this.user.username = loginForm.value.username;
     this.user.password = loginForm.value.password;
 
-
+    this.loginService.login(this.user).subscribe(
+      (response) => {
+        console.log(response);
+        let statusOK = response.ok;
+        if(statusOK){
+          sessionStorage.setItem('currentUser', response["_body"]);
+          this.cdRef.detectChanges();
+        }
+      },
+          (error) => console.log(error)
+    );
   }
 
 }

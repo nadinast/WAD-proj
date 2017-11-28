@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {UserCalcService} from "../usage-stats/calculation/user-calc.service";
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {UserLoginService} from "../services/http/userLogin.service";
 
 @Component({
   selector: 'ch-home',
@@ -8,10 +8,24 @@ import {UserCalcService} from "../usage-stats/calculation/user-calc.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService : UserLoginService,
+              private cdRef: ChangeDetectorRef) { }
+
+  private crntUser : string  = sessionStorage.getItem('currentUser');
 
   ngOnInit() {
 
+  }
+
+  logout() : void{
+    sessionStorage.removeItem('currentUser');
+    this.cdRef.markForCheck();
+    this.loginService.logout().subscribe(
+      (response) => {
+        console.log(response);
+      },
+          (error) => console.log(error)
+    );
   }
 
 }

@@ -26,6 +26,8 @@ import {UserCalcService} from "./usage-stats/calculation/user-calc.service";
 import {StatisticsService} from "./services/http/statistics.service";
 import { UsageVisitorComponent } from './usage-stats/usage-visitor/usage-visitor.component';
 import { EmailDomainVisitorComponent } from './usage-stats/email-domain-visitor/email-domain-visitor.component';
+import {UserLoginService} from "./services/http/userLogin.service";
+import { FallbackLoginComponent } from './fallback-login/fallback-login.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { EmailDomainVisitorComponent } from './usage-stats/email-domain-visitor/
     LoginComponent,
     UsageVisitorComponent,
     EmailDomainVisitorComponent,
+    FallbackLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { EmailDomainVisitorComponent } from './usage-stats/email-domain-visitor/
     FormsModule,
     HttpModule
   ],
-  providers: [UserRegisterService, StatisticsService],
+  providers: [UserRegisterService, StatisticsService, UserLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
