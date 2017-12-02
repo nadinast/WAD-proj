@@ -10,6 +10,8 @@ import {MenuModule} from 'primeng/primeng';
 import {PanelModule} from 'primeng/primeng';
 import {InputTextareaModule} from 'primeng/primeng';
 import {ToolbarModule} from 'primeng/primeng';
+import {FileUploadModule} from 'primeng/primeng';
+import {DialogModule} from 'primeng/primeng';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
@@ -28,6 +30,7 @@ import { UsageVisitorComponent } from './usage-stats/usage-visitor/usage-visitor
 import { EmailDomainVisitorComponent } from './usage-stats/email-domain-visitor/email-domain-visitor.component';
 import {UserLoginService} from "./services/http/userLogin.service";
 import { FallbackLoginComponent } from './fallback-login/fallback-login.component';
+import {FileUploadService} from "./services/http/fileUpload.service";
 
 @NgModule({
   declarations: [
@@ -56,9 +59,11 @@ import { FallbackLoginComponent } from './fallback-login/fallback-login.componen
     InputTextModule,
     PasswordModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    FileUploadModule,
+    DialogModule
   ],
-  providers: [UserRegisterService, StatisticsService, UserLoginService],
+  providers: [UserRegisterService, StatisticsService, UserLoginService, FileUploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

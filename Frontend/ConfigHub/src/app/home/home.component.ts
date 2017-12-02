@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UserLoginService} from "../services/http/userLogin.service";
+import {FileUploadService} from "../services/http/fileUpload.service";
 
 @Component({
   selector: 'ch-home',
@@ -8,16 +9,22 @@ import {UserLoginService} from "../services/http/userLogin.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private loginService : UserLoginService,
-              private cdRef: ChangeDetectorRef) { }
+  private fileCount :number = 0;
+  private countExists : boolean = false;
 
-  private crntUser : string  = sessionStorage.getItem('currentUser');
+  constructor(private loginService : UserLoginService,
+              private cdRef: ChangeDetectorRef,
+              private fileService : FileUploadService) { }
 
   ngOnInit() {
+  }
 
+  getUser() : string{
+    return this.loginService.getUser();
   }
 
   logout() : void{
+    this.countExists = false;
     sessionStorage.removeItem('currentUser');
     this.cdRef.markForCheck();
     this.loginService.logout().subscribe(
@@ -28,4 +35,14 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  getFileCount(): void{
+    this.fileService.getFiles().subscribe(
+      (response) => {
+        if(response.ok){
+          this.fileCount = JSON.parse(response['_body']).files.length;
+          this.countExists = true;
+        }
+      },
+    );
+  }
 }

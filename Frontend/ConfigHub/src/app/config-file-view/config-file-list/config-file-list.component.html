@@ -7,22 +7,21 @@
           <span class="file_name pull-left">
             {{file.name}}
           </span>
-              <button pButton
+            <button pButton
                       class="hover_shadow view_file pull-right"
                       type="button"
                       icon="fa-expand"
-                      label="View File">
-              </button>
-          </p>
-          <br>
-          <p class="file_properties">
-            Created:
-            {{file.created}}
+                      label="View File"
+                      (click)="showFile()">
+            </button>
             <br>
-            Last modified:
-            {{file.modified}}
-          </p>
+            <hr>
+            <a class="shadow" [href]="file.route">Download File</a>
         </div>
       </div>
     </div>
   </p-panel>
+
+  <p-dialog header="Title" [(visible)]="showDialog" [width]="300" modal="modal">
+    Content
+  </p-dialog>

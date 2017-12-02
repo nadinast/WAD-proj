@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Menu, MenuItem} from "primeng/primeng";
 import {UserLoginService} from "../services/http/userLogin.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ch-navigation-menu',
@@ -13,9 +14,8 @@ export class NavigationMenuComponent implements OnInit {
   popupItemsVisitor: MenuItem[];
   popupItemsLoggedIn: MenuItem[];
 
-  private crntUser = sessionStorage.getItem('currentUser');
-
-  constructor(private loginService: UserLoginService) { }
+  constructor(private loginService: UserLoginService,
+              private router: Router) { }
 
   ngOnInit() {
     this.items = [
@@ -27,9 +27,19 @@ export class NavigationMenuComponent implements OnInit {
       {label: 'Login', icon: 'fa-sign-in', routerLink:'/login'}
     ];
     this.popupItemsLoggedIn = [
-      {label: 'Logout', icon: 'fa-sign-out', command: () => {sessionStorage.clear(); this.loginService.logout().subscribe()}}
+      {label: 'Logout', icon: 'fa-sign-out', command: () => {this.logout()}}
     ]
 
+  }
+
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['']);
+    this.loginService.logout().subscribe()
+  }
+
+  getUser() : string{
+    return this.loginService.getUser();
   }
 
 }

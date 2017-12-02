@@ -14,18 +14,18 @@ export class UserLoginService{
     return this.http.post('/api/login', user);
   }
 
- /* getCurrentUser() : Observable<string[]>{
-    return this.http.get('/api/login/get' ).map(
-      (response: Response) => { return response.json() as string[]; });
-  }*/
-
   logout() : Observable<Response>{
     return this.http.get('/api/logout');
   }
 
+  // noinspection JSMethodCanBeStatic
   isLoggedIn() : boolean{
     if(sessionStorage.getItem('currentUser'))
       return true;
     return false;
+  }
+
+  getUser(): string{
+    return sessionStorage.getItem('currentUser');
   }
 }

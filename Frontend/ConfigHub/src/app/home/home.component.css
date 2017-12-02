@@ -25,7 +25,73 @@
 
 .center{
   text-align: center;
+}
 
+.rotate{
+  animation: button-animation;
+  animation-duration: 4s;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+}
+
+#profile-box{
+  border: solid 2px black;
+  width: 60vh;
+  height: 37vh;
+  position: relative;
+  left: 20.5%;
+  top: 30%;
+  bottom: 60%;
+  color: white;
+  background-color: yellowgreen;
+  box-shadow: 0 5px 5px 0 gainsboro;
+  font-family: "Roboto", "Trebuchet MS", Arial, Helvetica, sans-serif;
+  text-shadow: 2px 2px 4px gray;
+  user-select: none;
+}
+
+#profile-box:hover{
+  animation: box-animation;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.shadow{
+  box-shadow: 0 0 5px #A5F1FF, 0 0 5px #A5F1FF,
+  0 0 5px #A5F1FF, 0 0 5px #A5F1FF,
+  0 0 5px #A5F1FF;
+}
+
+#upload-pane{
+  width: 50vh;
+  height: 35vh;
+  position: absolute ;
+  left: 56%;
+  top: 39.5%;
+  bottom: 59%;
+  font-family: "Roboto", "Trebuchet MS", Arial, Helvetica, sans-serif;
+  background-color: lightgrey;
+  box-shadow: 0 5px 5px 0 darkgrey;
+}
+
+#upload-pane:hover{
+  animation: box-animation;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.text-shadow{
+  text-shadow: 1px 1px 1px gray;
+}
+
+@keyframes box-animation{
+  from {transform: scale(1);}
+  to {transform: scale(1.05);}
+}
+
+@keyframes button-animation{
+  50% {transform: rotate(180deg) scale(1.4);}
+  100% {transform: rotate(360deg) scale(1);}
 }
 
 @keyframes neon-lighting {

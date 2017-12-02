@@ -40,7 +40,7 @@ export class UsageVisitorComponent implements Visitor, OnInit{
       (response) => {
         userCalcService.updateCrntUsers(response["_body"]);
         this.userUsage = this.SUCCESS_MSG + userCalcService.getCrntUsers();
-        console.log(this.userUsage);
+
       },
       (error) => {
         console.log(error)

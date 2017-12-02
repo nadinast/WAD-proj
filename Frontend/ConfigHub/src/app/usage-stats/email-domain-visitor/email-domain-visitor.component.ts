@@ -40,7 +40,6 @@ export class EmailDomainVisitorComponent implements Visitor, OnInit {
       (response) => {
         userCalcService.updateCrntUsers(response["_body"]);
         this.emailDomainUserUsage = this.SUCCESS_MSG + userCalcService.getCrntUsers();
-        console.log(this.emailDomainUserUsage);
       },
     (error) => {
         console.log(error);

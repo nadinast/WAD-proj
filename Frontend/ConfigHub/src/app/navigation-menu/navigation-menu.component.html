@@ -16,7 +16,7 @@
     <button pButton
             class="profileButton"
             type="button"
-            [label]="crntUser"
+            [label]="getUser()"
             icon="fa-user-o"
             (click)="menuLoggedIn.toggle($event)">
     </button>

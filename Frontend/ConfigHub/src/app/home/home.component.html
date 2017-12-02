@@ -10,21 +10,57 @@
     Welcome to ConfigHub!</h3>
   <h4 id="description">Store, edit and view your configuration files for the Insider app.</h4>
 </div>
+
 <div class="row" *ngIf="!loginService.isLoggedIn(); else greet">
   <ch-login></ch-login>
 </div>
 <ng-template #greet>
   <div class="row center">
     <br>
-    <h2>Welcome back, {{crntUser}} !</h2>
-    <button type="button" class="btn-info" (click)="logout()">Logout</button>
+    <div id="profile-box">
+      <h1>Hey, {{getUser()}}!</h1>
+      <button pButton
+              type="button"
+              class="ui-button-info shadow"
+              (click)="getFileCount()"
+              label="Get my file count">
+      </button>
+      <h3 *ngIf="countExists; else break">You have {{fileCount}} files stored</h3>
+      <ng-template #break>
+        <hr>
+      </ng-template>
+      <br>
+      <button pButton
+              icon="fa-arrow-right"
+              type="button"
+              class="ui-button-info shadow"
+              (click)="logout()"
+              label="Logout">
+      </button>
+    </div>
+    <div id="upload-pane">
+      <br>
+      <br>
+      <br>
+      <h4 class="text-shadow">Quick upload</h4>
+      <!--suppress HtmlUnknownAttribute -->
+      <p-fileUpload name="configFile"
+                    url="/api/files/store"
+                    accept=".txt"
+                    auto="true"
+                    mode="basic"
+                    chooseLabel="Choose File">
+      </p-fileUpload>
+    </div>
     <br>
   </div>
 </ng-template>
+
 <hr>
+
 <div class = "container" >
-  <div class=" center">
-    <i class="fa fa-arrow-circle-down fa-2x"></i>
+  <div class="center">
+    <i class="fa fa-arrow-circle-down fa-2x rotate"></i>
   </div>
   <h4 class="center">Some cool stats about this site:</h4>
   <br>
@@ -35,4 +71,5 @@
     </div>
   </div>
 </div>
+<br>
 

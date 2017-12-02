@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigFile } from "./config-file.model";
+import {FileUploadService} from "../../services/http/fileUpload.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ch-config-file-list',
@@ -8,24 +10,33 @@ import { ConfigFile } from "./config-file.model";
 })
 export class ConfigFileListComponent implements OnInit {
 
-  configFiles: ConfigFile[] = [];
-  constructor() {
-    this.configFiles.push(new ConfigFile("File1","20/04/2017", "20/04/2017"));
-    this.configFiles.push(new ConfigFile("File2", "20/05/2015", "10/04/2016"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
-    this.configFiles.push(new ConfigFile("File3", "09/01/2014", "25/09/2017"));
+  private showDialog : boolean = false;
+  private configFiles: ConfigFile[] = [];
+  private readonly START_INDEX_FILE_NAME = 37;
+
+  constructor(private fileService: FileUploadService,
+              private router: Router) {
+    this.getFiles();
   }
 
   ngOnInit() {
   }
 
+  getFiles(): void{
+    this.fileService.getFiles().subscribe(
+      (response) => {
+        let name;
+        let refs = JSON.parse(response['_body']).files;
+        refs.forEach((route) => {
+           name = route.slice(this.START_INDEX_FILE_NAME, route.length);
+           this.configFiles.push(new ConfigFile(name, route));
+        });
+      },
+          (error) => console.log(error)
+    );
+  }
+
+  showFile() : void{
+    this.showDialog = true;
+  }
 }

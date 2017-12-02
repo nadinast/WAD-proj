@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {UserRegisterService} from "../services/http/userRegister.service";
 import {UserLoginService} from "../services/http/userLogin.service";
 import {Router} from "@angular/router";
+import {FileUploadService} from "../services/http/fileUpload.service";
 
 @Component({
   selector: 'ch-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private loginService : UserLoginService,
-              private cdRef: ChangeDetectorRef) { }
+              private cdRef: ChangeDetectorRef,
+              private fileService: FileUploadService) { }
 
   ngOnInit() {
   }

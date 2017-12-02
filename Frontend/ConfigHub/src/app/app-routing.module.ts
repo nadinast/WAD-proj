@@ -5,8 +5,9 @@ import {HomeComponent} from "./home/home.component";
 import {ConfigFileViewComponent} from "./config-file-view/config-file-view.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./home/register/register.component";
-import {LoginGuardService} from "./services/http/loginGuard.service";
+import {LoginGuardService} from "./services/router-guards/loginGuard.service";
 import {FallbackLoginComponent} from "./fallback-login/fallback-login.component";
+import {LogoutGuardService} from "./services/router-guards/logoutGuard.service";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,9 +21,21 @@ const routes: Routes = [
     component: ConfigFileViewComponent,
     canActivate: [LoginGuardService]
   },
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login/oops', component: FallbackLoginComponent},
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [LogoutGuardService]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [LogoutGuardService]
+  },
+  {
+    path: 'login/oops',
+    component: FallbackLoginComponent,
+    canActivate: [LogoutGuardService]
+  },
   {path: '**', component: HomeComponent}
 
 ];
@@ -30,6 +43,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [LoginGuardService]
+  providers: [LoginGuardService, LogoutGuardService]
 })
 export class AppRoutingModule { }
