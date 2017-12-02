@@ -1,5 +1,6 @@
 package user.login;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import user.register.Role;
 import user.register.User;
 
 @SuppressWarnings("serial")
@@ -22,11 +22,8 @@ public class UserDetailsImpl implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-		Set<Role> roles = user.getRoles();
-		for(Role role : roles){
-			authorities.add(new SimpleGrantedAuthority(role.getName()));
-		}
+		ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(new SimpleGrantedAuthority("USER"));
 		return authorities;
 	}
 

@@ -9,8 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import user.file.upload.ConfigFile;
 
 
 @Entity
@@ -23,7 +26,7 @@ public class User {
 	private String username;
     private String email;
     private String password;
-    private Set<Role> roles;
+    private Set<ConfigFile> file;
     
     @Transient
     private String confirmPassword;
@@ -88,22 +91,22 @@ public class User {
 		this.confirmPassword = confirmPassword;
 	}
 	
-	@ManyToMany
-	@JoinTable(name = "user_role", 
-			   joinColumns = @JoinColumn(name = "user_id"),
-			   inverseJoinColumns = @JoinColumn(name = "role_id"))
-	public Set<Role> getRoles() {
-		return roles;
+	
+	public void setFile(Set<ConfigFile> file) {
+		this.file = file;
 	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	
+	@OneToMany(mappedBy = "user")
+	public Set<ConfigFile> getFile() {
+		return file;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", username=" + username + ", email=" + email + "]";
 	}
+
+	
 
 	
 	
