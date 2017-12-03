@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {InputTextModule, MenubarModule, MenuItem, PasswordModule} from 'primeng/primeng';
+import {GrowlModule, InputTextModule, MenubarModule, MenuItem, PasswordModule} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
 import {MenuModule} from 'primeng/primeng';
 import {PanelModule} from 'primeng/primeng';
@@ -12,6 +12,7 @@ import {InputTextareaModule} from 'primeng/primeng';
 import {ToolbarModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
+import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
@@ -61,9 +62,11 @@ import {FileUploadService} from "./services/http/fileUpload.service";
     FormsModule,
     HttpModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    ConfirmDialogModule,
+    GrowlModule
   ],
-  providers: [UserRegisterService, StatisticsService, UserLoginService, FileUploadService],
+  providers: [UserRegisterService, StatisticsService, UserLoginService, FileUploadService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

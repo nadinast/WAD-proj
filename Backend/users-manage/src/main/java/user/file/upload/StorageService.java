@@ -1,25 +1,25 @@
 package user.file.upload;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Random;
 import java.util.stream.Stream;
 
-import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import user.file.upload.error.FileExistsException;
+import user.file.upload.error.FileNotSavedException;
 import user.register.UserRepository;
 
 @Service
@@ -52,7 +52,6 @@ public class StorageService {
 	
 	public Resource loadFile(String filename) {
 		rootLocation = Paths.get("upload-" + SecurityContextHolder.getContext().getAuthentication().getName());
-		System.out.println(rootLocation.toString());
 		try {
 			Path file = rootLocation.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
@@ -82,6 +81,18 @@ public class StorageService {
         }
 
     }
+	
+	public void save(String text, String name) throws FileExistsException, FileNotSavedException{
+		rootLocation = Paths.get("upload-" + SecurityContextHolder.getContext().getAuthentication().getName() + "\\" + name);
+			File file = new File(rootLocation.toString());
+			if(file.exists())
+				throw new FileExistsException("File already exists!");
+			try {
+				Files.write(rootLocation, text.getBytes());
+			} catch (IOException e) {
+				throw new FileNotSavedException("File could not be saved!");
+			}
+	}
 	
 	public void init() {
 		rootLocation = Paths.get("upload-" + SecurityContextHolder.getContext().getAuthentication().getName());

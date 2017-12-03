@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 })
 export class ConfigFileListComponent implements OnInit {
 
+  private content : string = "";
+  private clickedFile : ConfigFile;
   private showDialog : boolean = false;
   private configFiles: ConfigFile[] = [];
   private readonly START_INDEX_FILE_NAME = 37;
@@ -36,7 +38,15 @@ export class ConfigFileListComponent implements OnInit {
     );
   }
 
-  showFile() : void{
+  showFile(file: ConfigFile) : void{
+    this.clickedFile = file;
     this.showDialog = true;
+    this.fileService.getFile(file.name).subscribe(
+      response => {
+        console.log(response);
+        this.content = response['_body'];
+      },
+      error => console.log(error)
+    );
   }
 }

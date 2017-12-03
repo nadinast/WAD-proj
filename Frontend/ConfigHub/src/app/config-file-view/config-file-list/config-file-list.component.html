@@ -12,7 +12,7 @@
                       type="button"
                       icon="fa-expand"
                       label="View File"
-                      (click)="showFile()">
+                      (click)="showFile(file)">
             </button>
             <br>
             <hr>
@@ -22,6 +22,6 @@
     </div>
   </p-panel>
 
-  <p-dialog header="Title" [(visible)]="showDialog" [width]="300" modal="modal">
-    Content
+  <p-dialog header="Title" [(visible)]="showDialog" width="600" height="500" modal="modal" >
+    {{content}}
   </p-dialog>

@@ -15,7 +15,10 @@ export class FileUploadService{
   }
 
   getFile(fileName: string) : Observable<Response>{
-    return this.http.get("/api/files/load/" + fileName);
+    return this.http.get("/api/files/load/content/" + fileName);
   }
 
+  saveFile(text : string, name : string) : Observable<Response>{
+    return this.http.post("/api/files/save/" + name, text);
+  }
 }

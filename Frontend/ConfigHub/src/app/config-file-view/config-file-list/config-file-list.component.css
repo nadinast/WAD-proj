@@ -32,3 +32,7 @@
   padding-left: 23%;
   color: dimgray;
 }
+
+.ui-dialog-content{
+  white-space: pre-line;
+}

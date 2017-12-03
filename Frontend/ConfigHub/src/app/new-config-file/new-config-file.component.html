@@ -1,4 +1,6 @@
-<div >
+<p-growl [value]="msgs"></p-growl>
+
+<div>
   <div class="col-lg-8 col-lg-offset-2">
     <p-toolbar>
       <div class="align-group-left">
@@ -7,30 +9,42 @@
                 label="New"
                 type="button"
                 icon="fa-pencil-square-o"
-                iconPos="right">
+                iconPos="right"
+                (click)="resetText()">
         </button>
+      <div class="ui-toolbar-group-right align-button-right">
         <button pButton
                 class="ui-button-success spacing"
                 label="Save"
                 type="button"
                 icon="fa-save"
-                iconPos="right">
-        </button>
-      <div class="ui-toolbar-group-right align-button-right">
-        <button pButton
-                class="ui-button-secondary"
-                label="Export"
-                type="button"
-                icon="fa-paper-plane-o"
-                iconPos="right">
+                iconPos="right"
+                (click)="enterFileName()">
         </button>
       </div>
       </div>
     </p-toolbar>
+    <div class="row" *ngIf="needName">
+      <textarea pInputText
+                class="height col-lg-4"
+                placeholder="fileName.txt"
+                [(ngModel)]="name">
+      </textarea>
+      <button pButton
+              icon="fa-check"
+              class="icon-check col-lg-2"
+              (click)="confirmSave()">
+      </button>
+    </div>
     <div id="text-area-container">
       <textarea pInputTextarea
+                style="white-space: pre-wrap;"
                 placeholder="Create your new configuration file"
-                class="text-area"></textarea>
+                class="text-area"
+                [(ngModel)]="text">
+      </textarea>
     </div>
   </div>
 </div>
+
+<p-confirmDialog icon="fa fa-question-circle" width="425"></p-confirmDialog>
